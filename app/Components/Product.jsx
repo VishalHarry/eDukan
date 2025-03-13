@@ -48,7 +48,6 @@ export default function Products() {
                                 key={product.id}
                                 className="bg-[#0A192F] p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105 flex flex-col justify-between h-[350px]"
                             >
-                                {/* Image with Fixed Height */}
                                 <div className="flex justify-center items-center h-48">
                                     <img
                                         src={product.image}
@@ -56,8 +55,6 @@ export default function Products() {
                                         className="max-h-44 object-contain"
                                     />
                                 </div>
-
-                                {/* Title & Price */}
                                 <h2 className="text-lg font-semibold mt-2 line-clamp-2">
                                     {product.title}
                                 </h2>

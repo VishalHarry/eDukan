@@ -10,7 +10,18 @@ export default function ProductDetails() {
   const [error, setError] = useState(null);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [price, setPrice] = useState(0);
+
+  const colors = [
+    { name: "Red", code: "#FF0000" },
+    { name: "Blue", code: "#0000FF" },
+    { name: "Black", code: "#000000" },
+    { name: "Green", code: "#008000" },
+  ];
+
+  const sizes = ["S", "M", "L"];
+  const materials = ["Cotton", "Leather", "Synthetic"];
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -31,17 +42,19 @@ export default function ProductDetails() {
     if (id) fetchProduct();
   }, [id]);
 
-  const updatePrice = (color, size) => {
-    let newPrice = product?.price || 0;
-    if (color) newPrice += 5;
-    if (size) newPrice += 3;
-    return newPrice;
-  };
+  const handleSelection = (type, value) => {
+    let basePrice = product?.price || 0;
+    let extraPrice = 0;
 
-  const handleOptionChange = (optionType, value) => {
-    if (optionType === "color") setSelectedColor(value);
-    if (optionType === "size") setSelectedSize(value);
-    setPrice(updatePrice(selectedColor, selectedSize));
+    if (type === "color") setSelectedColor(value);
+    if (type === "size") setSelectedSize(value);
+    if (type === "material") setSelectedMaterial(value);
+
+    if (selectedColor || type === "color") extraPrice += 5;
+    if (selectedSize || type === "size") extraPrice += 3;
+    if (selectedMaterial || type === "material") extraPrice += 7;
+
+    setPrice(basePrice + extraPrice);
   };
 
   if (loading) return <p className="text-center text-lg">Loading product...</p>;
@@ -51,7 +64,7 @@ export default function ProductDetails() {
     <div className="min-h-screen bg-[#1B314F] text-[#E6F1FF] py-10">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex flex-col md:flex-row bg-[#0A192F] p-6 rounded-lg shadow-lg mt-20">
-          {/* Image Section */}
+         
           <div className="flex justify-center items-center w-full md:w-1/2 p-4">
             <img
               src={product.image}
@@ -60,40 +73,60 @@ export default function ProductDetails() {
             />
           </div>
 
-          {/* Product Details Section */}
+        
           <div className="w-full md:w-1/2 flex flex-col justify-between">
             <h1 className="text-3xl font-bold text-[#64FFDA]">{product.title}</h1>
             <p className="text-lg text-gray-300 mt-3">{product.description}</p>
             <p className="text-2xl font-bold text-[#64FFDA] mt-3">${price.toFixed(2)}</p>
             <p className="text-md text-gray-400 mt-2">Category: {product.category}</p>
 
-            {/* Product Customization Options */}
+           
             <div className="mt-4">
-              <label className="block text-sm font-semibold">Select Color:</label>
-              <select 
-                className="mt-1 p-2 bg-[#0A192F] border border-[#64FFDA] rounded-md" 
-                value={selectedColor} 
-                onChange={(e) => handleOptionChange("color", e.target.value)}
-              >
-                <option value="">Choose Color</option>
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-                <option value="Black">Black</option>
-              </select>
+              <p className="block text-sm font-semibold">Select Color:</p>
+              <div className="flex space-x-3 mt-2">
+                {colors.map((color) => (
+                  <button
+                    key={color.name}
+                    className={`w-10 h-10 rounded-full border-2 transition ${
+                      selectedColor === color.name ? "border-[#64FFDA] scale-110" : "border-transparent"
+                    }`}
+                    style={{ backgroundColor: color.code }}
+                    onClick={() => handleSelection("color", color.name)}
+                  ></button>
+                ))}
+              </div>
             </div>
-
             <div className="mt-4">
-              <label className="block text-sm font-semibold">Select Size:</label>
-              <select 
-                className="mt-1 p-2 bg-[#0A192F] border border-[#64FFDA] rounded-md" 
-                value={selectedSize} 
-                onChange={(e) => handleOptionChange("size", e.target.value)}
-              >
-                <option value="">Choose Size</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-              </select>
+              <p className="block text-sm font-semibold">Select Size:</p>
+              <div className="flex space-x-3 mt-2">
+                {sizes.map((size) => (
+                  <button
+                    key={size}
+                    className={`px-4 py-2 rounded-md border-2 transition ${
+                      selectedSize === size ? "border-[#64FFDA] bg-[#64FFDA] text-[#0A192F]" : "border-gray-500"
+                    }`}
+                    onClick={() => handleSelection("size", size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mt-4">
+              <p className="block text-sm font-semibold">Select Material:</p>
+              <div className="flex space-x-3 mt-2">
+                {materials.map((material) => (
+                  <button
+                    key={material}
+                    className={`px-4 py-2 rounded-md border-2 transition ${
+                      selectedMaterial === material ? "border-[#64FFDA] bg-[#64FFDA] text-[#0A192F]" : "border-gray-500"
+                    }`}
+                    onClick={() => handleSelection("material", material)}
+                  >
+                    {material}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="mt-6 flex space-x-4">
