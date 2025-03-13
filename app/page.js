@@ -2,8 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-[#0A192F] text-[#E6F1FF]  w-[100%]">
-      {/* Hero Section */}
+    <main className="bg-[#0A192F] text-[#E6F1FF]  w-full">
       <section className="flex flex-col items-center text-center py-20 px-6">
         <h1 className="text-4xl md:text-5xl font-bold text-[#64FFDA]">
           Your Ultimate Shopping Destination
@@ -18,14 +17,11 @@ export default function Home() {
           Start Shopping
         </a>
       </section>
-
-      {/* Featured Products Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-semibold text-[#64FFDA] mb-8 text-center">
           Featured Products
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {/* Product 1 */}
           <div className="bg-[#112240] p-6 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105">
             <Image
               src=""
@@ -36,13 +32,11 @@ export default function Home() {
             />
             <h3 className="text-xl font-semibold mt-4">Wireless Headphones</h3>
             <p className="text-sm mt-2">High-quality sound with noise cancellation.</p>
-            <p className="mt-2 font-semibold text-[#64FFDA]">₹2,999</p>
+            <p className="mt-2 font-semibold text-[#64FFDA]">$99</p>
             <a href="/product/1" className="mt-4 block text-sm text-[#64FFDA] hover:text-[#4ECCA3]">
               View Details →
             </a>
           </div>
-
-          {/* Product 2 */}
           <div className="bg-[#112240] p-6 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105">
             <Image
               src=""
@@ -53,13 +47,11 @@ export default function Home() {
             />
             <h3 className="text-xl font-semibold mt-4">Smart Fitness Band</h3>
             <p className="text-sm mt-2">Track your fitness with real-time monitoring.</p>
-            <p className="mt-2 font-semibold text-[#64FFDA]">₹1,499</p>
+            <p className="mt-2 font-semibold text-[#64FFDA]">$19</p>
             <a href="/product/2" className="mt-4 block text-sm text-[#64FFDA] hover:text-[#4ECCA3]">
               View Details →
             </a>
           </div>
-
-          {/* Product 3 */}
           <div className="bg-[#112240] p-6 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105">
             <Image
               src=""
@@ -70,15 +62,13 @@ export default function Home() {
             />
             <h3 className="text-xl font-semibold mt-4">Bluetooth Speaker</h3>
             <p className="text-sm mt-2">Powerful bass with crystal-clear sound.</p>
-            <p className="mt-2 font-semibold text-[#64FFDA]">₹1,999</p>
+            <p className="mt-2 font-semibold text-[#64FFDA]">$999</p>
             <a href="/product/3" className="mt-4 block text-sm text-[#64FFDA] hover:text-[#4ECCA3]">
               View Details →
             </a>
           </div>
         </div>
       </section>
-
-      {/* About Section */}
       <section className="bg-[#112240] py-16 px-6 text-center">
         <h2 className="text-3xl font-semibold text-[#64FFDA]">Why Shop with Us?</h2>
         <p className="max-w-3xl mx-auto mt-4 text-lg">
