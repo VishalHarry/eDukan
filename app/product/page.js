@@ -1,4 +1,5 @@
-import Product from "../components/Product";
+import Product from "../Components/Product";
+
 
 
 export default function AboutPage() {
