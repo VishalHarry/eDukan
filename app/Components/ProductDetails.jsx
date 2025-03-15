@@ -133,7 +133,7 @@ export default function ProductDetails() {
               <button className="px-6 py-2 bg-[#64FFDA] text-[#0A192F] rounded-md hover:bg-[#4ECCA3] transition">
                 Add to Cart
               </button>
-              <Link href="/products">
+              <Link href="/product">
                 <button className="px-6 py-2 border border-[#64FFDA] text-[#64FFDA] rounded-md hover:bg-[#4ECCA3] hover:text-[#0A192F] transition">
                   Back to Products
                 </button>
