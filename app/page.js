@@ -11,7 +11,7 @@ export default function Home() {
           Shop top-quality products with fast delivery and unbeatable prices.
         </p>
         <a
-          href="/products"
+          href="/product"
           className="mt-6 px-6 py-3 bg-[#64FFDA] text-[#0A192F] rounded-md text-lg font-semibold hover:bg-[#4ECCA3] transition"
         >
           Start Shopping
